@@ -4,7 +4,7 @@ module.exports = {
     siteDescription: 'cwza\'s technical blog',
     siteImage: '/banner.png', // main image of the site for metadata
     siteUrl: 'https://cwza.github.io/gatsby_blog/',
-    pathPrefix: '/gatsby_blog',
+    pathPrefix: '/',
     siteLanguage: 'en',
     ogLanguage: `en_US`,
     author: 'cwza', // for example - 'Ivan Ganev'
