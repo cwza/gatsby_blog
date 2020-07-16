@@ -3,7 +3,7 @@ module.exports = {
     siteTitle: 'cwza\'s technical blog',
     siteDescription: 'cwza\'s technical blog',
     siteImage: '/banner.png', // main image of the site for metadata
-    siteUrl: 'https://cwza.github.io/gatsby_blog/',
+    siteUrl: 'https://gatsby-blog-khaki.vercel.app',
     pathPrefix: '/',
     siteLanguage: 'en',
     ogLanguage: `en_US`,
