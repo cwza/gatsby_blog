@@ -8,8 +8,11 @@
 * Add md file or folder under ./content/links or ./content/notes or ./content/posts
 
 ## How to preview
-1. install gatsby by `npm install -g gatsby`
-2. run `gatsby develop`
+``` sh
+npm install
+npm start
+```
 
 ## How to deploy
-Just push code to origin/master. It will be deployed to vercel automatically.
+1. Link this repository to https://vercel.com/dashboard
+2. Just push code to origin/master and vercel will automatically deploy it to production.

@@ -3,14 +3,14 @@ module.exports = {
     siteTitle: 'cwza\'s technical blog',
     siteDescription: 'cwza\'s technical blog',
     siteImage: '/banner.png', // main image of the site for metadata
-    siteUrl: 'https://cwza.github.io/gatsby_blog',
-    pathPrefix: '/gatsby_blog',
+    siteUrl: 'https://gatsby-blog.cwza.vercel.app',
+    pathPrefix: '/',
     siteLanguage: 'en',
     ogLanguage: `en_US`,
     author: 'cwza', // for example - 'Ivan Ganev'
     authorDescription: 'Software Developer, Love open source, Love technology', // short text about the author
     avatar: '/avatar.jpg',
-    twitterSite: '', // website account on twitter
+    twitterSite: 'cwz0205a', // website account on twitter
     twitterCreator: 'cwz0205a', // creator account on twitter
     social: [
       {
