@@ -45,9 +45,9 @@ https://github.com/cwza/deep_t2i_web
 
 ## Source code and more
 * Training on P100 GPU, Flask api is deployed at Google Cloud Run, Web is deployed to Github Page
-* [Web interface](https://github.com/cwza/deep_t2i_web)
+* [Training code and Model architecure](https://github.com/cwza/deep_t2i)
 * [Flask api server](https://github.com/cwza/deep_t2i/tree/master/server)
-* [Training code and Model architecure](https://github.com/cwza/deep_t2i/tree/master/nbs)
+* [Web interface](https://github.com/cwza/deep_t2i_web)
 
 ---
 
