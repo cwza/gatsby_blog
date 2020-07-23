@@ -1,6 +1,6 @@
 ---
 title: 'Auto Deploy to Google Kubernetes Engine by Github Action'
-date: 2020-07-23
+date: 2020-07-22
 link: https://github.com/cwza/gcloud-gke-demo-py
 tags: ["gcloud", "github", "project"]
 draft: false
