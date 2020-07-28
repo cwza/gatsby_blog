@@ -1,5 +1,5 @@
 ---
-title: 'GKE Service Account Use Workload Identity'
+title: 'GKE Service Account Using Workload Identity'
 date: 2020-07-24
 tags: ['gcloud']
 draft: false
