@@ -1,7 +1,7 @@
 ---
 title: 'Longformer: transformer architecture that can handle long input'
 date: 2020-06-08
-tags: ['nlp', 'paper']
+tags: ['nlp', 'paper', 'deep-learning']
 description: 'Longformer notes'
 draft: false
 hide: false

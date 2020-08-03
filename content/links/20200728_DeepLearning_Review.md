@@ -2,7 +2,7 @@
 title: 'Deep Learning Very Quick Review(Chinese)(Nearly No Math)'
 date: 2020-07-28
 link: https://www.youtube.com/watch?v=SXJrIy7jozQ
-tags: ["cv", "nlp", "video"]
+tags: ["computer-vision", "nlp", "video", 'deep-learning']
 draft: false
 hide: false
 ---

@@ -2,7 +2,7 @@
 title: 'Fastai Transformers Utils'
 date: 2020-07-15
 link: https://github.com/cwza/fastai_transformers_utils
-tags: ["project", "nlp"]
+tags: ["project", "nlp", 'deep-learning']
 draft: false
 hide: false
 ---

@@ -2,11 +2,15 @@
 title: 'Deep t2i'
 cover: ./web.jpg
 date: 2020-07-16
-tags: ['project', 'nlp', 'cv']
+tags: ['project', 'nlp', 'computer-vision', 'deep-learning', 'video']
 description: 'My experiments of image synthesis from natural text. Complete Deep Learining Project that including training, flask backend api and react frontend web interface'
 draft: false
 hide: false
 ---
+
+## Video
+I made a explanation video using chinese:  
+<Embed src="https://www.youtube.com/embed/nPzVP1BmRhw" />
 
 ## Github Link
 * [Training code and Model architecure](https://github.com/cwza/deep_t2i)
