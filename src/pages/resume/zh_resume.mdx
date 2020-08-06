@@ -9,26 +9,29 @@
 
 ### Summary
 * 三年golang & nodejs開發 + GCP Kubernetes經驗
-* 三年Java Web Backend開發經驗
+* 三年Java Web 後端開發經驗
 * Deep Learning Skills & Project
 
 -----
 
 ### Experience
-1. MeepShop 後端軟體開發工程師 3年 (Golang, Nodejs, GCP Infra)
-    + rethinkdb+elasticsearch架構轉移至postgres+elasticsearch架構
-        - Cloud SQL Postgres設定
-        - Elasticsearch cluster架設
-        - rethinkdb to postgres and postgres to elasticsearch資料轉移程式 (Golang)
-        - Redis cluster架設
+1. meepShop 後端軟體開發工程師 3年 (Golang, Nodejs, GCP Infra)
+    + NoSQL+Elasticsearch架構轉移至PostgreSQL+Elasticsearch架構
+        - Cloud SQL PostgreSQL建置
+        - Elasticsearch cluster + Kibana建置
+        - Rethinkdb to PostgreSQL and PostgreSQL to Elasticsearch資料轉移 (Golang)
+        - Redis cluster建置
     + 將主要邏輯從Nodejs graphql api server轉移至go grpc server
         - Go grpc server主要開發
         - Nodejs api server協助開發
     + 開發Go micro service處理大量批次update
-    + 完整自動化CI流程設定與script撰寫 
-        - Code push -> CI run unit test -> Code review approvement -> Release Tag -> CI deploy to container registry -> CI deploy to kubernetes
+    + 自動化CI流程建置
+        - Code push -> CI run test -> Code review approvement -> CI deploy to container registry -> CI deploy to kubernetes(staging)
+        - Release tag push -> CI deploy the specific version to container registry -> CI deploy to Kubernetes(production)
     + Kubernetes cluster管理
-    + Feature Flag System
+    + Jaeger Tracing System建置
+        - 幫助找出緩慢功能的Root Cause
+    + Feature Toggle System
         - 讓PM能用圖形化界面開關新上版的Feature
     + 開發Kubernetes deploy tool (Golang + React)
         - 提供友善的圖形界面, 讓PM能指定版號直接上Production, 並提供退版功能 (Interface of kubectl)
@@ -50,14 +53,14 @@
     + Learned from many online courses (cs231n, cs224n, cs234, fastai, Edx Statistics and Data Science micro master program, ...etc)
     + Use pytorch to develop deep learning project
 * Others
-    + docker, react
+    + docker, react, git ...etc.
 
 -----
 
 ### Side Projects
-1. [Projects](https://gatsby-blog.cwza.vercel.app/projects)
-2. [Videos](https://gatsby-blog.cwza.vercel.app/videos)
-3. [Github Contributions](https://gatsby-blog.cwza.vercel.app/github_contribution)
+1. <Link to="/projects">Projects</Link>
+2. <Link to="/videos">Videos</Link>
+3. <Link to="/github_contribution">Github Contributions</Link>
 
 -----
 

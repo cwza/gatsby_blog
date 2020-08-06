@@ -15,20 +15,23 @@
 ------
 
 ### Experience
-1. MeepShop, Backend software developer, 3 years (Golang, Nodejs, GCP Infra)
-    + Migrate infrustructure from rethinkdb+elasticsearch architecture to postgres+elasticsearch architecture
-        - Setting Cloud SQL Postgres
-        - Build Elasticsearch cluster
-        - Data migration: rethinkdb to postgres and postgres to elasticsearch (Golang)
+1. meepShop, Backend software developer, 3 years (Golang, Nodejs, GCP Infra)
+    + Migrate infrustructure from NoSQL+Elasticsearch architecture to PostgreSQL+Elasticsearch architecture
+        - Build Cloud SQL PostgreSQL
+        - Build Elasticsearch cluster + Kibana
+        - Data migration: Rethinkdb to PostgreSQL and PostgreSQL to Elasticsearch (Golang)
         - Build Redis cluster
     + Migrate main logic from Nodejs graphql api server to go grpc api server
         - Go grpc server development
         - Support Nodejs api server development
     + Develop Go micro service to handle large batch update request
-    + Build completely automatic CI flow and write scripts
-        - Code push -> CI run unit test -> Code review approvement -> Release Tag -> CI deploy to container registry -> CI deploy to kubernetes
+    + Build automatic CI flow
+        - Code push -> CI run test -> Code review approvement -> CI deploy to container registry -> CI deploy to kubernetes(staging)
+        - Release tag push -> CI deploy the specific version to container registry -> CI deploy to Kubernetes(production)
     + Kubernetes cluster management
-    + Develop Feature Flag System
+    + Build Jaeger Tracing System
+        - Find the root cause of slow function
+    + Develop Feature toggle System
         - GUI management interface that provide PM a friendly way to turn on/off new features
     + Develop kubernetes deploy tool (Golang + React)
         - GUI management interface that provide PM a friendly way to deploy any version of service and rollback at production (Interface of kubectl)
@@ -50,7 +53,7 @@
     + Learned from many online courses (cs231n, cs224n, cs234, fastai, Edx Statistics and Data Science micro master program, ...etc)
     + Use pytorch to develop deep learning project
 * Others
-    + docker, react, git
+    + docker, react, git ...etc.
 
 -----
 
