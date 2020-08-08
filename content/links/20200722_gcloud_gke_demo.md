@@ -8,4 +8,4 @@ hide: false
 ---
 
 * Example of github-action that automatically deploy flask server to Google Kubernetes Engine
-<Embed src="https://www.youtube.com/embed/sJksCtIBejE" />
+<Embed src="https://www.youtube.com/embed/9GWNVZB5jZw" />

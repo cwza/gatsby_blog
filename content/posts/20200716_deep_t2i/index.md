@@ -10,7 +10,7 @@ hide: false
 
 ## Video
 I made a explanation video using chinese:  
-<Embed src="https://www.youtube.com/embed/nPzVP1BmRhw" />
+<Embed src="https://www.youtube.com/embed/W--rd8A1ZsE" />
 
 ## Github Link
 * [Training code and Model architecure](https://github.com/cwza/deep_t2i)
