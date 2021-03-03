@@ -1,6 +1,5 @@
 # 張嘉汶 (Kevin)
 ## Software Developer
-**Golang Nodejs Developer, Python & Deep Learning Developer**
 > [cwz0205a@gmail.com](mailto:cwz0205a@gmail.com)  
 > 0937-078-593  
 > 台灣新北市蘆洲區  
@@ -10,57 +9,40 @@
 ### Summary
 * 三年golang & nodejs開發 + GCP經驗
 * 三年Java Web 後端開發經驗
-* Deep Learning with Pytorch
 
 -----
 
 ### Experience
-1. meepShop 後端軟體開發工程師 3年 (Golang, Nodejs, GCP Infra)
-    + NoSQL+Elasticsearch架構轉移至PostgreSQL+Elasticsearch架構
-        - Cloud SQL PostgreSQL建置
-        - Elasticsearch cluster + Kibana建置
-        - Rethinkdb to PostgreSQL and PostgreSQL to Elasticsearch資料轉移 (Golang)
-        - Redis cluster建置
-    + 將主要邏輯從Nodejs graphql api server轉移至go grpc server
-        - Go grpc server主要開發
-        - Nodejs api server協助開發
-    + 開發Go micro service處理大量批次update
-    + 自動化CI流程建置
-        - Code push -> CI run test -> Code review approvement -> CI deploy to container registry -> CI deploy to kubernetes(staging)
-        - Release tag push -> CI deploy the specific version to container registry -> CI deploy to Kubernetes(production)
-    + Kubernetes管理
-    + Jaeger Tracing System建置
-        - 幫助找出緩慢功能的Root Cause
-    + Feature Toggle System
-        - 讓PM能用圖形化界面開關新上版的Feature
-    + 開發Kubernetes deploy tool (Golang + React)
-        - 提供友善的圖形界面, 讓PM能指定版號直接上Production, 並提供退版功能 (Interface of kubectl)
+1. meepShop 後端軟體開發工程師 2年 (Golang, Nodejs, GCP)
+    * 開發Service統一處理Database存取
+        + 統一管理連線數與簡化Micro Service架構下的開發
+    * 開發Service同步Postgres與Elasticsearch資料
+        + 使用Message Queue大幅降低api latency
+    * 開發Service統一登入與管理使用者權限
+        + 簡化Micro Service使用者登入權限控管
+    * 開發Service處理大量上架
+        + 解決大量上架回應緩慢問題
+    * 自動化CI/CD流程建置
+        + 改善上版測試效率
+    * Tracing System建置
+        + 找到並改善performance bottleneck
+    * Monitor System建置
+        + Monitor各個api的流量, 個別scale, 降低cost
+        + Alert System
+    * 導入Feature Toggle System
+        + 減少Hot Fix or 退版次數
+        + 降低重構風險
 2. IISI JAVA軟體工程師 3年
-    + 參與三個專案的後端api server開發 (Spring, PostgreSQL, Rest api)
-
------
-
-### Skills
-* Micro Services
-    + golang nodejs python http server
-    + golang grpc server
-* Google Cloud Services
-    + Kubernetes
-    + Cloud SQL, Cloud Storage, Cloud Run, Cloud Function, Cloud Pub/Sub, Cloud Container Registry ...etc.
-* Other Services
-    + Redis, PostgreSQL, ElasticSearch, CircleCI ...etc.
-* Deep Learning
-    + Learned from many online courses (cs231n, cs224n, cs234, fastai, Edx Statistics and Data Science micro master program, ...etc)
-    + Use pytorch to develop deep learning project
-* Others
-    + docker, react, git ...etc.
-
------
-
-### Side Projects
-1. <Link to="/projects">Projects</Link>
-2. <Link to="/videos">Videos</Link>
-3. <Link to="/github_contribution">Github Contributions</Link>
+    * Online Charging System Gateway（4G即時計費系統）
+        + Pure Backend Http API Server（Spring + PostgreSql）
+        + Ericsson、CHT內部系統API串接
+        + SQL Query Optimization to reduce api latency
+    * Vod Structure Management Tool（片單管理系統）
+        + Fullstack Http & SOAP Server（Spring + JSP + Oracle）
+        + Ericsson、CHT內部系統API串接
+    * MOD Provision Gateway（MOD供裝平台系統）
+        + Pure Backend Http API Server（Spring + Oracle）
+        + 接手專案負責系統後期開發與維護
 
 -----
 
@@ -69,7 +51,14 @@
 
 -----
 
+### Skills
+* Golang, Nodejs, Python, SQL
+* GCP and Kubernetes
+* PostgreSQL, Redis, Elasticsearch
+* Docker, React, CircleCI
+
+-----
+
 ### Reference
 [Github](https://github.com/cwza)  
-[新Blog](https://gatsby-blog.cwza.vercel.app)  
-[舊Blog](https://cwza.github.io/my_blog/)  
+[Blog](https://gatsby-blog.cwza.vercel.app)  

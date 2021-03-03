@@ -1,6 +1,5 @@
 # Kevin Zhang
 ## Software Developer
-**Golang Nodejs Developer, Python & Deep Learning Developer**
 > [cwz0205a@gmail.com](mailto:cwz0205a@gmail.com)  
 > 0937-078-593  
 > Luzhou Dist., New Taipei City, Taiwan 
@@ -10,57 +9,40 @@
 ### Summary
 * Three years golang & nodejs development + GCP experience
 * Three years Java Web backend development experience
-* Deep Learning with Pytorch
 
 ------
 
 ### Experience
-1. meepShop, Backend software developer, 3 years (Golang, Nodejs, GCP Infra)
-    + Migrate infrustructure from NoSQL+Elasticsearch architecture to PostgreSQL+Elasticsearch architecture
-        - Build Cloud SQL PostgreSQL
-        - Build Elasticsearch cluster + Kibana
-        - Data migration: Rethinkdb to PostgreSQL and PostgreSQL to Elasticsearch (Golang)
-        - Build Redis cluster
-    + Migrate main logic from Nodejs graphql api server to go grpc api server
-        - Go grpc server development
-        - Support Nodejs api server development
-    + Develop Go micro service to handle large batch update request
-    + Build automatic CI flow
-        - Code push -> CI run test -> Code review approvement -> CI deploy to container registry -> CI deploy to kubernetes(staging)
-        - Release tag push -> CI deploy the specific version to container registry -> CI deploy to Kubernetes(production)
-    + Kubernetes management
-    + Build Jaeger Tracing System
-        - Find the root cause of slow function
-    + Develop Feature toggle System
-        - GUI management interface that provide PM a friendly way to turn on/off new features
-    + Develop kubernetes deploy tool (Golang + React)
-        - GUI management interface that provide PM a friendly way to deploy any version of service and rollback at production (Interface of kubectl)
-2. IISI, JAVA software developer, 3 years
-    + Develop backend api server of 3 projects (Spring, PostgresSQL, Rest api)
-
------
-
-### Skills
-* Micro Services
-    + golang nodejs python http server
-    + golang grpc server
-* Google Cloud Services
-    + Kubernetes
-    + Cloud SQL, Cloud Storage, Cloud Run, Cloud Function, Cloud Pub/Sub, Cloud Container Registry ...etc.
-* Other Services
-    + Redis, PostgresSQL, ElasticSearch, CircleCI ...etc.
-* Deep Learning
-    + Learned from many online courses (cs231n, cs224n, cs234, fastai, Edx Statistics and Data Science micro master program, ...etc)
-    + Use pytorch to develop deep learning project
-* Others
-    + docker, react, git ...etc.
-
------
-
-### Side Projects
-1. <Link to="/projects">Projects</Link>
-2. <Link to="/videos">Videos</Link>
-3. <Link to="/github_contribution">Github Contributions</Link>
+1. meepShop, Backend software developer, 2 years (Golang, Nodejs, GCP)
+    * Develop service as access layer between micro services and database
+        + Manage number of connections universily and simplify micro service developing 
+    * Develop service that syncronize data from postgres to Elasticsearch
+        + Use message queue to largely reduce api latency
+    * Develop service that manage user authentication and authorization universily
+        + Simplify user authentication and aurhorization under micro services developing
+    * Develop service that handle large products creation
+        + Solve the problem of slow response under a large number of products creation
+    * Build automatic CI/CD flow
+        + Improve deployment and test performance
+    * Build tracing system
+        + Identify and fix performance bottleneck
+    * Build feature toggle system
+        + Reduce number of hot fix and rollback
+        + Reduce the risk of code refactor
+    * Build monitor system
+        + Monitor the request rate of each api that help us to decide scale number thus decrease cost
+        + Alert System
+2. IISI, JAVA software developer, 3 years.
+    * CHT 4G Online Charging System Gateway
+        + Pure Backend Http API Server（Spring + PostgreSql）
+        + Develop modules interact with internal systems of Ericsson and CHT.
+        + SQL Query Optimization
+    * Vod Structure Management Tool
+        + Fullstack Http & SOAP Server（Spring + JSP + Oracle）
+        + Develop modules interact with internal systems of Ericsson and CHT.
+    * MOD Provision Gateway
+        + Pure Backend Http API Server（Spring + Oracle）
+        + System maintenance and post-development
 
 -----
 
@@ -69,7 +51,14 @@ National Central University, Computer Science, Bachelor
 
 -----
 
+### Skills
+* Golang, Nodejs, Python, SQL
+* GCP and Kubernetes
+* PostgreSQL, Redis, Elasticsearch
+* Docker, React, CircleCI
+
+-----
+
 ### Reference
 [Github](https://github.com/cwza)  
-[New Blog](https://gatsby-blog.cwza.vercel.app)  
-[Original Blog](https://cwza.github.io/my_blog/)  
+[Blog](https://gatsby-blog.cwza.vercel.app)  
