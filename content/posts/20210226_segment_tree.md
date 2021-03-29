@@ -1,5 +1,5 @@
 ---
-title: 'Segment Tree with Lazy Propagation'
+title: 'Segment Tree and Segment Tree with Lazy Propagation'
 date: 2021-02-26
 tags: ['algorithm', 'competitive-programming', 'leetcode']
 description: "Sample code for segment tree with lazy propagation which is useful for range query problems"
@@ -97,67 +97,65 @@ int main() {
 }
 ```
 
-## Lazy Propagation
+## Segment Tree with Lazy Propagation (Addition on segments)
 * https://www.youtube.com/watch?v=xuoQdt5pHj0
-* Code of lazyRangeUpdate: https://youtu.be/xuoQdt5pHj0?t=899
-* Code of lazyQuery: https://youtu.be/xuoQdt5pHj0?t=1373
 * O(logn) for range update, n is the range
-* [CSES 1651 Range Update Query](https://cses.fi/problemset/task/1651/)
+* [CSES 1735 Range Updates and Sums](https://cses.fi/problemset/task/1735/)
 ``` cpp
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pi;
 
 int n, q;
-const int maxN = 2e5;
-int x[maxN+1];
 
 struct node {
     ll s, lz;
+    bool mark;
 };
 node tree[1<<19];
 
-void lzRangeUpdate(int x, int y, int delta, int i = 1, int l = 1, int r = n) {
-    // Update tree[i] to the latest value, and propagate lz to its children
-    if(tree[i].lz != 0) {
-        tree[i].s += tree[i].lz;
-        if(l != r) { // if not leaf, we propagate lz to children
-            tree[2*i].lz += tree[i].lz;
-            tree[2*i+1].lz += tree[i].lz;
-        }
-        tree[i].lz = 0;
+void apply(int i, ll val, bool mark, int l, int r) {
+    // update value and lazy
+    if(mark) {
+        tree[i].s = val*(r-l+1);
+        tree[i].mn = val;
+        tree[i].lz = val;
+        tree[i].mark = true;
+    } else {
+        tree[i].s += val*(r-l+1);
+        tree[i].mn += val;
+        tree[i].lz += val;
     }
+}
+
+void push(int i, int l, int mid, int r) {
+    // propagate from parent to children
+    apply(2*i, tree[i].lz, tree[i].mark, l, mid);
+    apply(2*i+1, tree[i].lz, tree[i].mark, mid+1, r);
+    tree[i].lz = 0;
+    tree[i].mark = false;
+}
+
+
+void update(int x, int y, ll val, bool mark, int i = 1, int l = 1, int r = n) {
     if(x > r || y < l) { // [x, y] completely not overlap with [l, r]
         return;
     }
     if(x <= l && y >= r) { // [x, y] completely cover [l, r]
-        tree[i].s += delta; // update tree[i]
-        if(l != r) { // if not leaf, we propagate delta to children's lz
-            tree[2*i].lz += delta;
-            tree[2*i+1].lz += delta;
-        }
+        // Update value and lazy
+        apply(i, val, mark, l, r);
         return;
     }
     // [x, y] partially overlap with [l, r]
     int mid = l + (r-l)/2;
-    lzRangeUpdate(x, y, delta, 2*i, l, mid);
-    lzRangeUpdate(x, y, delta, 2*i+1, mid+1, r); 
+    push(i, l, mid, r); // Propagate
+    update(x, y, val, mark, 2*i, l, mid);
+    update(x, y, val, mark, 2*i+1, mid+1, r); 
     tree[i].s = tree[2*i].s + tree[2*i+1].s;
+    tree[i].mn = max(tree[2*i].mn, tree[2*i+1].mn);
 }
 
-ll lzRangeQuery(int x, int y, int i = 1, int l = 1, int r = n) {
-    // Update tree[i] to the latest value, and propagate lz to its children
-    if(tree[i].lz != 0) {
-        tree[i].s += tree[i].lz;
-        if(l != r) {
-            tree[2*i].lz += tree[i].lz;
-            tree[2*i+1].lz += tree[i].lz;
-        }
-        tree[i].lz = 0;
-    }
+ll query(int x, int y, int i = 1, int l = 1, int r = n) {
     if(x > r || y < l) { // [x, y] completely not overlap with [l, r]
         return 0;
     }
@@ -166,29 +164,39 @@ ll lzRangeQuery(int x, int y, int i = 1, int l = 1, int r = n) {
     }
     // [x, y] partially overlap with [l, r]
     int mid = l + (r-l)/2;
-    ll v1 = lzRangeQuery(x, y, 2*i, l, mid);
-    ll v2 = lzRangeQuery(x, y, 2*i+1, mid+1, r);
+    push(i, l, mid, r); // Propagate
+    ll v1 = query(x, y, 2*i, l, mid);
+    ll v2 = query(x, y, 2*i+1, mid+1, r);
     return v1 + v2;
+    // return max(v1, v2);
 }
 
 int main() {
     ios::sync_with_stdio(0); 
     cin.tie(0);
+    // freopen("input.txt", "r", stdin); 
+    // freopen("output.txt", "w", stdout);
 
     cin >> n >> q;
-    for(int i = 1; i <= n; ++i) {
-        cin >> x[i];
-        lzRangeUpdate(i, i, x[i]);
+    for(int i = 1, a; i <= n; ++i) {
+        cin >> a;
+        update(i, i, a, false);
     }
     while(q--) {
-        int type, a, b, c;
-        cin >> type;
-        if(type==1) {
-            cin >> a >> b >> c;
-            lzRangeUpdate(a, b, c);
+        int qt;
+        cin >> qt;
+        if(qt==1) {
+            int a, b, x;
+            cin >> a >> b >> x;
+            update(a, b, x, false);
+        } else if(qt==2) {
+            int a, b, x;
+            cin >> a >> b >> x;
+            update(a, b, x, true);
         } else {
-            cin >> a;
-            cout << lzRangeQuery(a, a) << "\n";
+            int a, b;
+            cin >> a >> b;
+            cout << query(a, b) << "\n";
         }
     }
 }
