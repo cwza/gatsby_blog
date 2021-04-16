@@ -77,7 +77,9 @@ int main() {
         ll a;
         cin >> a;
         curSum += a;
-        ans += counter[curSum-x];
+        if(counter.count(curSum-x)) {
+            ans += counter[curSum-x];
+        }
         counter[curSum]++;
     }
     cout << ans;

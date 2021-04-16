@@ -66,3 +66,13 @@ iter = lower_bound(arr.begin(), arr.end(), 1);
 cout << iter == arr.begin() << "\n\n"; // true
 ```
 * 須注意的是若回傳的iterator==begin則代表找不到
+
+
+## array<int, 2>
+常常我們會在vector中存入array<int, 2>第一個存value, 第二個存index, 在此情形下我們需要一些特殊處理
+``` cpp
+lower_bound(arr.begin(), arr.end(), {4});
+upper_bound(arr.begin(), arr.end(), {4, (int)1e9});
+lower_bound(arr.begin(), arr.end(), {4, (int)1e9}, greater<ar<int, 2>>());
+upper_bound(arr.begin(), arr.end(), {4}, greater<ar<int, 2>>());
+```
