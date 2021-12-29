@@ -9,13 +9,13 @@ hide: false
 ## Directed Graph
 * There is a cycle in directed graph <=> There is a back edge in directed graph.  
 (v1, v2) is back edge if v2 is an ancestor of v1 in the dfs tree.  
-* You can store visited[] and acting[] array to check back edge
+* You can check this by storing state(init, visiting, visited) of each node while traverse the graph.
 
 ## Undirected Graph
 * For undirected graph, 1 -> 2, 2 -> 1, the 2 -> 1 is not a back edge.  
 That is 1 is direct parent of 2 in dfs tree then the 2 -> 1 can not be a back edge.  
 * While dfs pass parent node into function to check if next node is parent or not
-* You can use visited[] array to check cycle on undirected graph
+* You can check this by storing state and parent of each node while traverse the graph.
 
 ## Find the nodes in Cycle
 If you want to actually find the nodes in cycle do the following changes:  
@@ -27,60 +27,59 @@ If you want to actually find the nodes in cycle do the following changes:
 ``` cpp
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+#define ll long long
+#define ar array
 
 /*
-Cycle Detection
+Cycle Detection on Directed Graph
 */
 
 int n, m;
 const int maxN = 1e5;
-vector<int> adj[maxN+1]; // u: [v, ...]
-bool visited[maxN+1], acting[maxN+1];
-int parent[maxN+1];
-vector<int> ans;
+vector<int> adj[maxN]; // u: [v, ...]
+int state[maxN]; // 0: init, 1: visiting, 2: visited
+int parent[maxN];
 
 void dfs(int u) {
-    visited[u] = true;
-    acting[u] = true;
-    for(int v : adj[u]) {
-        if(acting[v]) {
-            int cur = u;
-            ans.push_back(v);
-            while(cur!=v) {
-                ans.push_back(cur);
-                cur = parent[cur];
-            }
-            ans.push_back(v);
-            cout << ans.size() << "\n";
-            for(int i = ans.size()-1; i>=0; --i) cout << ans[i] << " ";
-            exit(0);
-        } 
-        if(!visited[v]) {
-            parent[v] = u;
-            dfs(v);
-        }
-    }
-    acting[u] = false;
+	state[u] = 1;
+	for(int v : adj[u]) {
+		if(state[v] == 2) continue;
+		if(state[v] == 1) {
+			vector<int> ans;
+			int cur = u;
+			ans.push_back(u);
+			while(cur != v) {
+				ans.push_back(parent[cur]);
+				cur = parent[cur];
+			}
+			ans.push_back(u);
+			cout << ans.size() << "\n";
+			for(int i = ans.size()-1; i >= 0; i--) cout << ans[i]+1 << " ";
+			exit(0);
+		}
+		parent[v] = u;
+		dfs(v);
+	}
+	state[u] = 2;
 }
 
 int main() {
-    ios::sync_with_stdio(0); 
-    cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	fill(parent, parent+n, -1); // -1 indicate there is no parent of it
+	for(int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v; u--; v--;
+		adj[u].push_back(v);
+	}
 
-    cin >> n >> m;
-    for(int i = 1; i <= m; ++i) {
-        int a, b;
-        cin >> a >> b;
-        adj[a].push_back(b);
-    }
-
-    for(int u = 1; u <= n; ++u) {
-        if(!visited[u]) {
-            dfs(u);
-        }
-    }
-    cout << "IMPOSSIBLE";
+	for(int u = 0; u < n; u++) {
+		if(state[u] != 0) continue;
+		dfs(u);
+	}
+	cout << "IMPOSSIBLE";
 }
 ```
 
@@ -89,59 +88,59 @@ int main() {
 ``` cpp
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+#define ll long long
+#define ar array
 
 /*
 Cycle Detection on Undirected Graph
 */
 
-const int maxN = 1e5;
-vector<int> adj[maxN+1];
 int n, m;
-int parent[maxN+1];
-bool visited[maxN+1];
-vector<int> ans;
+const int maxN = 1e5;
+vector<int> adj[maxN]; // u: [v, ...]
+int state[maxN]; // 0: init, 1: visiting, 2: visited
+int parent[maxN];
 
-void dfs(int u, int p) {
-    visited[u] = true;
-    parent[u] = p;
-    for(int v : adj[u]) {
-        if(v==p) continue;
-        if(visited[v]) {
-            int cur = u;
-            ans.push_back(v);
-            while(cur!=v) {
-                ans.push_back(cur);
-                cur = parent[cur];
-            }
-            ans.push_back(v);
-            cout << ans.size() << "\n";
-            for(int i = ans.size()-1; i>=0; --i) cout << ans[i] << " ";
-            exit(0);
-        } 
-        else {
-            dfs(v, u);
-        }
-    }
+void dfs(int u) {
+	state[u] = 1;
+	for(int v : adj[u]) {
+		if(v == parent[u] || state[v] == 2) continue;
+		if(state[v] == 1) {
+			vector<int> ans;
+			int cur = u;
+			ans.push_back(u);
+			while(cur != v) {
+				ans.push_back(parent[cur]);
+				cur = parent[cur];
+			}
+			ans.push_back(u);
+			cout << ans.size() << "\n";
+			for(int i = ans.size()-1; i >= 0; i--) cout << ans[i]+1 << " ";
+			exit(0);
+		}
+		parent[v] = u;
+		dfs(v);
+	}
+	state[u] = 2;
 }
 
 int main() {
-    ios::sync_with_stdio(0); 
-    cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	fill(parent, parent+n, -1); // -1 indicate there is no parent of it
+	for(int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v; u--; v--;
+		adj[u].push_back(v);
+		adj[v].push_back(u);
+	}
 
-    cin >> n >> m;
-    for(int i = 1; i <= m; ++i) {
-        int a, b;
-        cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
-    }
-
-    for(int i = 1; i <= n; ++i) {
-        if(!visited[i]) {
-            dfs(i, 0);
-        }
-    }
-    cout << "IMPOSSIBLE";
+	for(int u = 0; u < n; u++) {
+		if(state[u] != 0) continue;
+		dfs(u);
+	}
+	cout << "IMPOSSIBLE";
 }
 ```
