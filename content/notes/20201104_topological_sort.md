@@ -92,6 +92,55 @@ print(topo_sort(graph)) # [4, 5, 0, 2, 1, 3]
 graph = {0:[1,2], 1:[3], 2:[3], 3:[0], 4:[5], 5:[]}
 print(topo_sort(graph)) # None
 ```
+* [CSES Course Schedule](https://cses.fi/problemset/task/1679/)
+``` cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ar array
+
+// topological sort
+
+int n, m;
+const int maxN = 1e5;
+vector<int> adj[maxN];
+vector<int> ans;
+int state[maxN]; // init: 0, visiting: 1, visited: 2
+
+void dfs(int u) {
+	state[u] = 1;
+	for(int v : adj[u]) {
+		if(state[v] == 2) continue;
+		if(state[v] == 1) {
+			cout << "IMPOSSIBLE";
+			exit(0);
+		}
+		dfs(v);
+	}
+	ans.push_back(u);
+	state[u] = 2;
+}
+
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	for(int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v; u--; v--;
+		adj[u].push_back(v);
+	}
+
+	for(int u = 0; u < n; u++) {
+		if(state[u] != 0) continue;
+		dfs(u);
+	}
+
+	reverse(ans.begin(), ans.end());
+	for(int a : ans) cout << a+1 << " ";
+}
+```
 
 ## Leetcode
 [210 Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)

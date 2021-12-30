@@ -22,78 +22,67 @@ https://www.youtube.com/watch?v=RpgcYiky7uw&t=57s
 ``` cpp
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pi;
+#define ll long long
+#define ar array
 
-/*
-Strongly Connected Component by Kosaraju's algorithm
-*/
+// Strongly Connected Component
+
 int n, m;
 const int maxN = 1e5;
-vector<int> adj[maxN+1], radj[maxN+1];
-bool visited[maxN+1];
-stack<int> s;
-int who[maxN+1];
+vector<int> adj1[maxN], adj2[maxN];
+bool visited1[maxN], visited2[maxN];
+vector<int> rtop;
+int who[maxN];
 
 void dfs1(int u) {
-    for(int v : adj[u]) {
-        if(!visited[v]) {
-            visited[v] = true;
-            dfs1(v);
-            s.push(v);
-        }
-    }
+	visited1[u] = true;
+	for(int v : adj1[u]) {
+		if(visited1[v]) continue;
+		dfs1(v);
+	}
+	rtop.push_back(u);
 }
 
 void dfs2(int s, int u) {
-    for(int v : radj[u]) {
-        if(!visited[v]) {
-            visited[v] = true;
-            who[v] = s;
-            dfs2(s, v);
-        }
-    }
+	visited2[u] = true;
+	who[u] = s;
+	for(int v : adj2[u]) {
+		if(visited2[v]) continue;
+		dfs2(s, v);
+	}
 }
 
 int main() {
-    ios::sync_with_stdio(0); 
-    cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	for(int i = 0; i < m; i++) {
+		int u, v;
+		cin >> u >> v; u--; v--;
+		adj1[u].push_back(v);
+		adj2[v].push_back(u);
+	}
 
-    cin >> n >> m;
-    for(int i = 1; i <= m; ++i) {
-        int a, b;
-        cin >> a >> b;
-        adj[a].push_back(b);
-        radj[b].push_back(a);
-    }
+	for(int u = 0; u < n; u++) {
+		if(visited1[u]) continue;
+		dfs1(u);
+	}
 
-    for(int u = 1; u <= n; ++u) {
-        if(!visited[u]) {
-            visited[u] = true;
-            dfs1(u);
-            s.push(u);
-        }
-    }
+	vector<int> ans;
+	for(int i = rtop.size()-1; i >= 0; i--) {
+		int u = rtop[i];
+		if(visited2[u]) continue;
+		ans.push_back(u);
+		dfs2(u, u);
+	}
 
-    fill(visited, visited+maxN+1, false);
-    vector<int> roots;
-    while(s.size()) {
-        int u = s.top(); s.pop();
-        if(!visited[u]) {
-            visited[u] = true;
-            who[u] = u;
-            roots.push_back(u);
-            dfs2(u, u);
-        }
-    }
-    if(roots.size()==1) {
-        cout << "YES";
-        return 0;
-    }
-    cout << "NO\n";
-    cout << roots[1] << " " << roots[0];
+	if(ans.size() == 1) {
+		cout << "YES";
+		return 0;
+	}
+	cout << "NO\n";
+	cout << ans[1]+1 << " " << ans[0]+1;
 }
 ```
 

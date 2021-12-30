@@ -48,6 +48,7 @@ def general_alg(src)
 * O(VlogV+E): Use fibonacci heap for O(1) update O(logn) delete
 * No negative edge, can be used on cycle
 * Greedy algorithm
+* Use adjacency list to store the graph
 ``` python
 inf = float("+inf")
 def dijkstra(src)
@@ -73,11 +74,59 @@ def dijkstra(src)
                 pi[v] = u
                 q.push(d[v], v) # update the priority of v
 ```
+* [Dijkstra practice](https://cses.fi/problemset/task/1671)
+``` cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ar array
+
+// Dijkstra
+
+int n, m;
+const int maxN = 1e5;
+const ll inf = 1e18;
+vector<ar<ll, 2>> adj[maxN];
+bool visited[maxN];
+ll d[maxN];
+
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	fill(d, d+n, inf);
+	for(int i = 0; i < m; i++) {
+		int u, v, w;
+		cin >> u >> v >> w; u--; v--;
+		adj[u].push_back({v, w});
+	}
+
+	priority_queue<ar<ll, 2>, vector<ar<ll, 2>>, greater<ar<ll, 2>>> pq; // {d[u], u}
+	pq.push({0, 0}); d[0] = 0;
+	while(pq.size()) {
+		auto [du, u] = pq.top(); pq.pop();
+		if(visited[u]) continue;
+		visited[u] = true;
+
+		for(auto [v, w] : adj[u]) {
+            if(d[u] == inf) continue;
+			if(d[v] > d[u] + w) {
+				d[v] = d[u] + w;
+				pq.push({d[v], v});
+			}
+		}
+	}
+
+	for(int i = 0; i < n; i++) cout << d[i] << " ";
+}
+```
 
 ## Bellman-Ford
 * O(VE)
 * Can be used on negative cycles
 * It can't be used on finding shortest path on negative cycles, it only can detect negative cycle and abort
+* Use the edge list to store the graph
 ``` python
 inf = float("+inf")
 ninf = float("-inf")
@@ -100,6 +149,60 @@ def bellman_ford(src):
             if d[v] > d[u] + w(u, v):
                 d[v] = ninf
 ```
+* [Bellman-Ford practice](https://cses.fi/problemset/task/1673)
+``` cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ar array
+
+// Bellman-Ford
+
+int n, m;
+const ll inf = 1e18;
+const int maxN = 2500;
+vector<ar<ll, 3>> edges;
+ll d[maxN];
+
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	fill(d, d+maxN, inf);
+	d[0] = 0;
+	for(int i = 0; i < m; i++) {
+		int u, v, w;
+		cin >> u >> v >> w; u--; v--;
+		edges.push_back({u, v, -w});
+	}
+
+	// Bellman-Ford 1
+	for(int i = 0; i < n; i++) {
+		for(auto edge : edges) {
+			ll u = edge[0], v = edge[1], w = edge[2];
+			if(d[u] == inf) continue;
+			if(d[v] > d[u] + w) {
+				d[v] = d[u] + w;
+			}
+		}
+	}
+
+	// Bellman-Ford 2 to detect negative cycle
+	for(int i = 0; i < n; i++) {
+		for(auto edge : edges) {
+			ll u = edge[0], v = edge[1], w = edge[2];
+			if(d[u] == inf) continue;
+			if(d[v] > d[u] + w) {
+				d[v] = -inf;
+			}
+		}
+	}
+
+	if(d[n-1] == -inf) cout << "-1";
+	else cout << -d[n-1];
+}
+```
 
 ## Generate Shortest Path Tree Graph: Guaranteed to Have No Cycle
 1. Generate d[] from Dijkstra or Bellman-Ford
@@ -114,6 +217,7 @@ for each edge (u, v, w):
 * O(V^3)
 * Used on all pairs shortest path problem
 * https://www.youtube.com/watch?v=NzgFUwOaoIw&list=PLUl4u3cNGP6317WaSNfmCvGym2ucw3oGp&index=15
+* Use adjacency matrix to store the graph
 ``` python
 "dist[u][v]: shortest dist from node u to node v"
 "w[u][v]: length of edge (u, v), actually w is the adjacency matrix"
@@ -143,6 +247,57 @@ for k in range(n):
             if dist[u][v] > dist[u][k] + dist[k][v]:
                 dist[u][v] = dist[u][k] + dist[k][v]
                 # dist[u][v] = min(dist[u][v], dist[u][k]+dist[k][v])
+```
+* [Floyed-Warshall practice](https://cses.fi/problemset/task/1672)
+``` cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ar array
+
+// Floyed-Warshall
+
+int n, m, q;
+const ll inf = 1e18;
+const int maxN = 500;
+ll d[maxN][maxN]; // Shortest Distance Between Nodes
+
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m >> q;
+	fill(&d[0][0], &d[0][0] + maxN*maxN, inf); // Init to +inf
+	for(int i = 0; i < n; i++) d[i][i] = 0; // Set d[u][u] to 0
+
+	// Run Floyed-Warshall
+	for(int i = 0; i < m; i++) {
+		int u, v, w;
+		cin >> u >> v >> w; u--; v--;
+		d[u][v] = min(d[u][v], (ll)w);
+		d[v][u] = min(d[v][u], (ll)w);
+	}
+
+	// Query and Output Answer
+	for(int k = 0; k < n; k++) {
+		for(int u = 0; u < n; u++) {
+			for(int v = 0; v < n; v++) {
+				if(d[u][k] == inf || d[k][v] == inf) continue;
+				if(d[u][v] > d[u][k] + d[k][v]) {
+					d[u][v] = d[u][k] + d[k][v];
+				}
+			}
+		}
+	}
+
+	for(int i = 0; i < q; i++) {
+		int u, v;
+		cin >> u >> v; u--; v--;
+		ll ans = d[u][v];
+		if(ans >= inf) cout << "-1\n";
+		else cout << ans << "\n";
+	}
+}
 ```
 
 ## Longest path or Shortest path on negative cycle

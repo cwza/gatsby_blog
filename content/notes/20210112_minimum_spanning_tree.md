@@ -34,6 +34,72 @@ edges = [(1, 2, 3), (2, 3, 5), (3, 4, 9), (1, 5, 5), (5, 6, 2), (6, 4, 7), (2, 5
 tree = kruskal(nodes, edges)
 print(tree) # [(5, 6, 2), (1, 2, 3), (3, 6, 3), (2, 3, 5), (6, 4, 7)]
 ```
+* [CSES Road Reparation](https://cses.fi/problemset/task/1675)
+``` cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define ar array
+
+// Minimum Spanning Tree by Kruskal
+
+int n, m;
+const int maxN = 1e5;
+vector<ar<int, 3>> edges;
+
+int link[maxN];
+int sz[maxN];
+
+int find(int x) {
+	while(x != link[x]) {
+		x = link[x];
+	}
+	return x;
+}
+
+bool unite(int x, int y) {
+	x = find(x);
+	y = find(y);
+	if(x == y) return false;
+
+	if(sz[x] > sz[y]) swap(x, y); // let x < y
+	// link small one to larger one
+	link[x] = y;
+	sz[y] += sz[x];
+	return true;
+}
+
+int main() {
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
+	
+	cin >> n >> m;
+	for(int i = 0; i < m; i++) {
+		int u, v, w;
+		cin >> u >> v >> w; u--; v--;
+		edges.push_back({w, u, v});
+	}
+	sort(edges.begin(), edges.end());
+
+	for(int i = 0; i < n; i++) {
+		link[i] = i;
+		sz[i] = 1;
+	}
+	ll ans = 0;
+	int num = 0;
+	for(auto [w, u, v] : edges) {
+		if(!unite(u, v)) continue;
+		ans += w;
+		num++;
+	}
+
+	if(num != n-1) {
+		cout << "IMPOSSIBLE";
+		return 0;
+	}
+	cout << ans;
+}
+```
 
 
 ## Prim
