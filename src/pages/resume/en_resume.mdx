@@ -7,41 +7,44 @@
 ------
 
 ### Summary
-* Two years golang & nodejs development + GCP experience
-* Three years Java Web backend development experience
+* Three years golang micro service with kubernetes development experience
+* One year nodejs backend development experience
+* Three years java web backend development experience
 
 ------
 
 ### Experience
-1. meepShop, Backend software developer, 2 years (Golang, Nodejs, GCP)
-    * Develop service as access layer between micro services and database
-        + Manage number of connections universily and simplify micro service developing 
-    * Develop service that syncronize data from postgres to Elasticsearch
-        + Use message queue to largely reduce api latency
-    * Develop service that manage user authentication and authorization universily
-        + Simplify user authentication and aurhorization under micro services developing
-    * Develop service that handle large products creation
-        + Solve the problem of slow response under a large number of products creation
-    * Build automatic CI/CD flow
-        + Improve deployment and test performance
-    * Build tracing system
-        + Identify and fix performance bottleneck
-    * Build feature toggle system
-        + Reduce number of hot fix and rollback
-        + Reduce the risk of code refactor
-    * Build monitor system
-        + Monitor the request rate of each api that help us to decide scale number thus decrease cost
-        + Alert System
-2. IISI, JAVA software developer, 3 years.
+1. ProphetStor, Senior Software Engineer, 1 year (Golang, Kubernetes)
+	* Develop VPA HPA Recommendation System
+		+ Golang micro service run in kubernetes
+		+ Dispatcher-Worker architecture by message queue for scalability (RabbitMQ)
+	* Develop kubernetes hpa related algorithm
+		+ Auto scale application by cpu and memery usage
+		+ Auto scale Kafka consumer by production rate, consumption rate and consumer lag
+		+ Auto scale Nginx application by request rate, response time and response error
+		+ Auto scale MongoDB read replica by query rate and read latency
+	* Develop restful api for accessing configs and outputs of recommendation system (Swagger + Gin)
+    * Develop grpc api for DB CRUD operation of recommendation system (GRPC server + PostgreSQL)
+	* Reduce DB access rate by cache
+	* Reduce DB pulling frequency by event driven architecture (RabbitMQ)
+	* Monitor system by Open-Telemetry (Prometheus + Jaeger)
+	* Profile system by Datadog Continuous Profiling
+2. meepShop, Backend software developer, 2 years (Golang, Nodejs, GCP)
+    * Develop service as access layer between micro services and database (GRPC server + PostgreSQL)
+    * Develop service that syncronize data from postgres to Elasticsearch (Pub-Sub)
+    * Develop batch service to handle large products creation (Pub-Sub)
+    * Build automatic CI/CD flow (CircleCI)
+    * Build tracing system (Open-Tracing + Jaeger)
+    * Build monitor system (Prometheus)
+3. IISI, JAVA software developer, 3 years (Java, Spring)
     * CHT 4G Online Charging System Gateway
-        + Pure Backend Http API Server（Spring + PostgreSql）
+        + Pure Backend Http API Server (Spring + PostgreSql)
         + Develop modules interact with internal systems of Ericsson and CHT.
-        + SQL Query Optimization
     * Vod Structure Management Tool
-        + Fullstack Http & SOAP Server（Spring + JSP + Oracle）
+        + Fullstack Http & SOAP Server (Spring + JSP + Oracle)
         + Develop modules interact with internal systems of Ericsson and CHT.
-    * MOD Provision Gateway
-        + Pure Backend Http API Server（Spring + Oracle）
+    * MOD Provision Gateway
+        + Pure Backend Http API Server (Spring + Oracle)
         + System maintenance and post-development
 
 -----
@@ -52,10 +55,10 @@ National Central University, Computer Science, Bachelor
 -----
 
 ### Skills
-* Golang, Nodejs, Python, C++, SQL
+* Golang, Nodejs, Python, SQL
 * GCP and Kubernetes
-* PostgreSQL, Redis, Elasticsearch
-* Docker, React, CircleCI
+* PostgreSQL, Redis, InfluxDB, RabbitMQ
+* Prometheus, Docker, CircleCI
 
 -----
 

@@ -7,41 +7,44 @@
 -----
 
 ### Summary
-* 2年golang & nodejs開發 + GCP經驗
-* 3年Java Web 後端開發經驗
+* 3年Golang Micro Service with Kubernetes開發經驗
+* 1年Nodejs後端開發經驗
+* 3年Java後端開發經驗
 
 -----
 
 ### Experience
-1. meepShop 後端軟體開發工程師 2年 (Golang, Nodejs, GCP)
-    * 開發Service統一處理Database存取
-        + 統一管理連線數與簡化Micro Service架構下的開發
-    * 開發Service同步Postgres與Elasticsearch資料
-        + 使用Message Queue大幅降低api latency
-    * 開發Service統一登入與管理使用者權限
-        + 簡化Micro Service使用者登入權限控管
-    * 開發Service處理大量上架
-        + 解決大量上架回應緩慢問題
-    * 自動化CI/CD流程建置
-        + 改善上版測試效率
-    * Tracing System建置
-        + 找到並改善performance bottleneck
-    * Monitor System建置
-        + Monitor各個api的流量, 個別scale, 降低cost
-        + Alert System
-    * 導入Feature Toggle System
-        + 減少Hot Fix or 退版次數
-        + 降低重構風險
-2. IISI JAVA軟體工程師 3年
-    * Online Charging System Gateway（4G即時計費系統）
-        + Pure Backend Http API Server（Spring + PostgreSql）
+1. ProphetStor 資深軟體工程師 1年 (Golang, Kubernetes)
+	* 開發Kubernetes VPA HPA建議系統
+		+ Golang micro service run in kubernetes
+		+ Dispatcher-Worker architecture by message queue for scalability (RabbitMQ)
+	* 開發Kubernetes Application Aware HPA相關演算法
+		+ Auto scale application by cpu and memery usage
+		+ Auto scale Kafka consumer by production rate, consumption rate and consumer lag
+		+ Auto scale Nginx application by request rate, response time and response error
+		+ Auto scale MongoDB read replica by query rate and read latency
+	* 開發Restful API存取建議系統的config與output (Swagger + Gin)
+    * 開發GRPC API處理建議系統需要的DB CRUD操作 (GRPC server + PostgreSQL)
+	* 使用Cache大幅降低DB存取數
+	* 使用Event Driven架構大幅降低pulling data from DB頻率 (RabbitMQ)
+	* Monitor系統by Open-Telemetry (Prometheus + Jaeger)
+	* Profile系統by Datadog Continuous Profiler 
+2. meepShop 後端軟體工程師 2年 (Golang, Nodejs, GCP)
+    * 開發DB Access Layer Service統一處理資料庫存取 (GRPC server + PostgreSQL)
+    * 開發DB Synchronize Service同步Postgres與Elasticsearch資料 (Pub-Sub)
+    * 開發Batch Service處理大量Product新增 (Pub-Sub)
+    * 自動化CI/CD流程建置 (CircleCI)
+    * Tracing System建置 (Open-Tracing + Jaeger)
+    * Monitor System建置 (Prometheus)
+3. IISI JAVA軟體工程師 3年 (Java, Spring)
+    * Online Charging System Gateway (4G即時計費系統)
+        + Pure Backend Http API Server (Spring + PostgreSql)
         + Ericsson、CHT內部系統API串接
-        + SQL Query Optimization to reduce api latency
-    * Vod Structure Management Tool（片單管理系統）
-        + Fullstack Http & SOAP Server（Spring + JSP + Oracle）
+    * Vod Structure Management Tool (MOD片單管理系統)
+        + Fullstack Http & SOAP Server (Spring + JSP + Oracle)
         + Ericsson、CHT內部系統API串接
-    * MOD Provision Gateway（MOD供裝平台系統）
-        + Pure Backend Http API Server（Spring + Oracle）
+    * MOD Provision Gateway（MOD供裝平台系統）
+        + Pure Backend Http API Server (Spring + Oracle)
         + 接手專案負責系統後期開發與維護
 
 -----
@@ -52,10 +55,10 @@
 -----
 
 ### Skills
-* Golang, Nodejs, Python, C++, SQL
+* Golang, Nodejs, Python, SQL
 * GCP and Kubernetes
-* PostgreSQL, Redis, Elasticsearch
-* Docker, React, CircleCI
+* PostgreSQL, Redis, InfluxDB, RabbitMQ
+* Prometheus, Docker, CircleCI
 
 -----
 
