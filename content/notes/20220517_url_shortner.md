@@ -18,7 +18,7 @@ hide: false
 
 ## API Interface
 * create_short_url(long_url string, expire_time time) -> short_url string
-* redirect(short_url string) -> HTTP 402 to long_url
+* redirect(short_url string) -> HTTP 302 to long_url
 
 ## Analasis
 * compute the create rate, read rate
