@@ -10,9 +10,9 @@ hide: false
 * A very good snippet to lock file by shell script
 * Very useful if you want there is only one instance of your program be runned by OS.
 ``` sh
-lockfile=/var/tmp/mylock
+lockfile=/var/tmp/mylock # Because we put our lock file in tmp folder, therefore if we face the power failure situation, lockfile will still be deleted by OS after start. 
 if ( set -o noclobber; echo "$$" > "$lockfile") 2> /dev/null; then
-        trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
+        trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT # This line make sure lockfile will be deleted if the process died unexpected
         # do stuff here
         echo 'running'
         sleep 10
