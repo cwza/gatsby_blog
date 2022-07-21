@@ -43,16 +43,11 @@ hide: false
 ## Others
 When driver update his position to `location true table`, he also need to update the `driver proximity cache`.  
 We need to have a strategy to get the latest position from `driver proximity cache` and expire old positions when the true position be updated.
-* for the list in the same geohash region
-    + use the sorted set of redis and the ZRANGEBYSCORE command, O(logN+M)
+* use the sorted set of redis and the ZRANGEBYSCORE command, O(logN+M)
     + use expire_time as the score
     + ZRANGEBYSCORE $now +inf to query for non-expired positions
     + ZREMRANGEBYSCORE -inf $now to query for expired position
     + [reference](https://redis.io/commands/zrangebyscore/)
-    + remove the expired positions
-* for the positions across geohash
-    + use the one with the latest expire_time
-    + remove expired positions
 
 ## Reference
 * https://towardsdatascience.com/ace-the-system-design-interview-uber-lyft-7e4c212734b3
