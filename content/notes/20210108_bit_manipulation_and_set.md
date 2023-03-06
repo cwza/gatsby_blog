@@ -64,3 +64,15 @@ int b = 0; do {
     // process subset b
 } while (b=(b-x)&x);
 ```
+## Useful Snippet
+``` cpp
+// Usuaully work when n <= 20
+int n;
+for(int b = 0; b < 1<<n; ++b) {
+    for(int i = 0; i < n; ++i) {
+        if(b & 1<<i) {
+
+        }
+    }
+}
+```
